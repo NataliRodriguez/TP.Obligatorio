@@ -7,7 +7,7 @@ import { Item } from 'src/app/models/item';
     styleUrls: ['./additem.component.css']
 })
 export class AddItemComponent implements OnInit{ //creacion de propiedades
-    id: string= '';
+    id: number= 0;
     title: string='';
     price: number=0;
     quantity: number=0;
@@ -24,5 +24,6 @@ export class AddItemComponent implements OnInit{ //creacion de propiedades
         item.title= this.title;
         item.price= this.price;
         item.quantity= this.quantity
+        item.completed= false;
     }
 }
