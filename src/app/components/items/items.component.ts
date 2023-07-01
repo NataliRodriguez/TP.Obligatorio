@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Item} from '../../models/item';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-items',
@@ -7,35 +8,16 @@ import {Item} from '../../models/item';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent {
-  items: Item[]=[];
+  items: Item[]= [];
   total: number=0//variable que se va actualizando cada vez que se realiza una operacion
-  constructor() {}
-  ngOnInit(): void{
-    this.items=[
-      {
-        id:0,
-        title:'manzana',
-        price:10.5,
-        quantity:4,
-        completed:false
-      },
-      {
-        id:1,
-        title:'pan',
-        price:3.5,
-        quantity:8,
-        completed:true
-      },
-      {
-        id:2,
-        title:'campera',
-        price:300,
-        quantity:1,
-        completed:false
-      }
-    ];
+
+  constructor(private itemService:ItemService) {}
+
+
+  ngOnInit(): void {
+    //this.items=[]
+    this.items=this.itemService.getItems();
     this.getTotal();
-    
   }
 
   deleteItem(item:Item){//para borrar productos
